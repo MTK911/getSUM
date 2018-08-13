@@ -1,0 +1,261 @@
+#!/bin/bash
+#set -xv
+##~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+#                                        #
+#           GetSUM hash cracker          #
+#             Written by ${LG}MTK${NC}             #
+#----------------------------------------#
+#     Created by Open Source shared      #
+#            as Open source              #
+#             www.mtk911.cf		 #
+#                                        #
+#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~##
+
+#MIT License
+#
+#Copyright (c) 2018 Muhammad Talha Khan
+#
+#Permission is hereby granted, free of charge, to any person obtaining a copy
+#of this software and associated documentation files (the "Software"), to deal
+#in the Software without restriction, including without limitation the rights
+#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#copies of the Software, and to permit persons to whom the Software is
+#furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all
+#copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#SOFTWARE.
+
+#DISCLAIMER 
+
+#This software/script/application/thing is provided as is, without warranty of any kind. Use of this software/script/application/thing is entirely at #your own risk. Creator of this software/script/application/thing is not responsible for any direct or indirect damage to your own or defiantly someone else's property resulting from the use of this software/script/application/thing.
+
+#because colors
+R='\033[0;31m'
+G='\033[0;32m'
+B='\033[0;34m'
+Y='\033[1;33m'
+LG='\033[1;32m'
+BW='\033[1;37m'
+UW='\033[4;37m'
+RB='\033[41m'
+NC='\033[0m'
+
+
+control_c()
+# Catch the ctrl+c
+{
+  echo '' 
+  echo -ne "Ctrl+c detected falling back\\n"
+  exec "$0"
+  main_man
+}
+ 
+# trap keyboard interrupt (control-c)
+trap control_c SIGINT
+
+sha_1() {
+echo -ne "Enter SHA1 hash: "
+read -r  hash_sha1
+cat '/usr/share/wordlists/nmap.lst' | while read -r PEND
+do
+echo "$PEND:$(echo -n "$PEND" | sha1sum | awk '{print $1}')" | grep "$hash_sha1"
+done
+
+sleep 3
+echo ''
+main_man
+}
+
+
+sha_256() {
+echo -ne "Enter SHA256 hash: "
+read -r  hash_sha256
+cat '/usr/share/wordlists/nmap.lst' | while read -r PEND
+do
+echo "$PEND:$(echo -n "$PEND" | sha256sum | awk '{print $1}')" | grep "$hash_sha256"
+done
+
+sleep 3
+echo ''
+main_man
+}
+
+
+sha_384() {
+echo -ne "Enter SHA384 hash: "
+read -r  hash_sha384
+cat '/usr/share/wordlists/nmap.lst' | while read -r PEND
+do
+echo "$PEND:$(echo -n "$PEND" | sha384sum | awk '{print $1}')" | grep "$hash_sha384"
+done
+
+sleep 3
+echo ''
+main_man
+}
+
+
+sha_512() {
+echo -ne "Enter SHA512 hash: "
+read -r  hash_sha512
+cat '/usr/share/wordlists/nmap.lst' | while read -r PEND
+do
+echo "$PEND:$(echo -n "$PEND" | sha512sum | awk '{print $1}')" | grep "$hash_sha512"
+done
+
+sleep 3
+echo ''
+main_man
+}
+
+
+md_5() {
+echo -ne "Enter md5 hash: "
+read -r  hash_md5
+cat '/usr/share/wordlists/nmap.lst' | while read -r PEND
+do
+echo "$PEND:$(echo -n "$PEND" | md5sum | awk '{print $1}')" | grep "$hash_md5"
+done
+
+sleep 3
+echo ''
+main_man
+}
+
+
+#Say_something_smart
+abo_ut () {
+clear
+echo ""
+echo ""
+echo -ne "               
+ _______  _______  _______  _______  __   __  __   __ 
+|       ||       ||       ||       ||  | |  ||  |_|  |
+|    ___||    ___||_     _||  _____||  | |  ||       |
+|   | __ |   |___   |   |  | |_____ |  |_|  ||       |
+|   ||  ||    ___|  |   |  |_____  ||       ||       |
+|   |_| ||   |___   |   |   _____| ||       || ||_|| |
+|_______||_______|  |___|  |_______||_______||_|   |_|                                                    
+              
+                             
+       ${G}GetSUM${NC} created in the office because it was getting pretty boring.
+            Valuable feedback and suggestions are always welcome 
+                 @ ${R}root@mtk911.cf${NC} or ${R}http://fb.com/MTK911${NC}"
+
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+sleep 5
+main_man
+}
+
+banner () {
+echo -ne "
+
+
+${R}                          MTKMTKMTKMTKMTKMTKMTKMTKMTKM${NC}
+                            010011010101010001001011
+${R}                          MTKMTKMTKMTKMTKMTKMTKMTKMTKM${NC}
+
+                                                                          
+${B}    M${NC}T${B}K                                  ${Y}M${NC}T${Y}K          ${NC}
+${B}    M${NC}T${B}K M${NC}T${B}KM                        MT${NC}K${B}  ${Y}M${NC}T${Y}K          ${NC}   
+${B}    M${NC}T${B}K M${NC}T${B}KMT                     MT${NC}K${B}MT  ${Y}M${NC}T${Y}K          ${NC}   
+${B}    M${NC}T${B}K   M${NC}T${B}KMK                  MT${NC}K${B}MT   ${Y}M${NC}T${Y}K     M${NC}T${Y}K  ${NC}  
+${B}    M${NC}T${B}K    M${NC}T${B}KMM                MT${NC}K${B}MT    ${Y}M${NC}T${Y}K    M${NC}T${Y}K   ${NC} 
+${B}    M${NC}T${B}K     M${NC}T${B}KMT              MT${NC}K${B}MT     ${Y}M${NC}T${Y}K  M${NC}T${Y}KM    ${NC} 
+${B}    M${NC}T${B}K       M${NC}T${B}KK            MT${NC}K${B}M       ${Y}M${NC}T${Y}K M${NC}T${Y}KMT    ${NC} 
+${B}    M${NC}T${B}K         M${NC}T${B}K          M${NC}T${B}K         ${Y}M${NC}T${Y}K   M${NC}T${Y}KMT  ${NC} 
+${B}    M${NC}T${B}K          M${NC}T${B}K        M${NC}T${B}K          ${Y}M${NC}T${Y}K      M${NC}T${Y}K ${NC}  
+${B}    M${NC}T${B}K            M${NC}T${B}K    M${NC}T${B}K            ${Y}M${NC}T${Y}K          ${NC}
+${B}    M${NC}T${B}K                                  ${Y}M${NC}T${Y}K          ${NC}   
+${B}    M${NC}T${B}K                                  ${Y}M${NC}T${Y}K          ${NC}   
+                                                            
+                                                                                         
+"
+echo "SWYgeW91IGNhbiBzZWUgdGhpcyB0aGF0IG1lYW5zIHlvdSBhY3R1YWxseSBjYXJlIHdoYXQgeW91J3JlIHJ1bm5pbmcgb24geW91ciBjb21wdXRlciB3aGF0IHNlZW1zIHRvIGJlIHNvbWV0aGluZyB5b3UganVzdCBkb3dubG9hZGVkIGZyb20gYSByYW5kb20gZ3V5cyByZXBvc2l0b3J5IG92ZXIgdGhlIGludGVybmV0LiBGb3IgdGhhdCB5b3UgaGF2ZSBlYXJuZWQgbXkgcmVzcGVjdC4=" | base64 --decode
+exit
+}
+
+#Emergency exit here
+sh_exit () {
+clear
+echo "        Calculating the hash one password at a time"
+echo -ne "
+##~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+#                                        #
+#           GetSUM hash cracker          #
+#             Written by ${LG}MTK${NC}             #
+#----------------------------------------#
+#     Created by Open Source shared      #
+#            as Open source              #
+#    ${R}www.mtk911.cf${NC} | ${R}root[at]mtk911.cf${NC}   #
+#                                        #
+#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~##
+
+"
+
+exit
+}
+while getopts ':^' catch; do
+ case "$catch" in
+
+  ^)
+   banner 
+   ;;
+
+ esac
+done
+
+
+
+#FRONT_END
+main_man(){
+clear
+echo ""
+echo ""
+echo -ne "
+
+ _______  _______  _______  _______  __   __  __   __ 
+|       ||       ||       ||       ||  | |  ||  |_|  |
+|    ___||    ___||_     _||  _____||  | |  ||       |
+|   | __ |   |___   |   |  | |_____ |  |_|  ||       |
+|   ||  ||    ___|  |   |  |_____  ||       ||       |
+|   |_| ||   |___   |   |   _____| ||       || ||_|| |
+|_______||_______|  |___|  |_______||_______||_|   |_|                                                    
+                             
+     ${R} +-----------------------------------------+${NC}
+     ${R} |${NC}  ${Y}1${NC}.  Crack SHA1                         ${R}|${NC}
+     ${R} |${NC}  ${Y}2${NC}.  Crack SHA256                       ${R}|${NC}
+     ${R} |${NC}  ${Y}3${NC}.  Crack SHA384                       ${R}|${NC}
+     ${R} |${NC}  ${Y}4${NC}.  Crack SHA512                       ${R}|${NC}
+     ${R} |${NC}  ${Y}5${NC}.  Crack MD5                          ${R}|${NC}
+     ${R} |${NC}  ${Y}0${NC}.  About GetSUM                       ${R}|${NC}
+     ${R} |${NC}  ${R}q${NC}.  Quit                               ${R}|${NC}
+     ${R} +-----------------------------------------+${NC}
+"
+
+read -r -p "[-] (Your choice?):" choice
+case $choice in
+1) sha_1 ;;
+2) sha_256 ;;
+3) sha_384;;
+4) sha_512;;
+5) md_5 ;;
+0) abo_ut ;;
+q|Q) sh_exit ;;
+*) echo -ne ${RB}${UW}"\"$choice\"${NC} is not a valid choice"\\n; sleep 2; clear ;;
+esac
+main_man
+}
+main_man
