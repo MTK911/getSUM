@@ -75,6 +75,19 @@ main_man
 }
 
 
+sha_224() {
+echo -ne "Enter SHA224 hash: "
+read -r  hash_sha224
+cat '/usr/share/wordlists/nmap.lst' | while read -r PEND
+do
+echo "$PEND:$(echo -n "$PEND" | sha224sum | awk '{print $1}')" | grep "$hash_sha224"
+done
+
+sleep 3
+echo ''
+main_man
+}
+
 sha_256() {
 echo -ne "Enter SHA256 hash: "
 read -r  hash_sha256
@@ -130,6 +143,57 @@ echo ''
 main_man
 }
 
+gen_hash() {
+clear
+echo -ne "Type string you want to hash: "
+read -r  get_string
+echo -ne "\\n"${Y}"SHA1 ${NC}= " $(echo -n "$get_string" | sha1sum)"\\n\\n"
+
+echo -ne ${Y}"MD5${NC} = " $(echo -n "$get_string" | md5sum)"\\n\\n"
+
+echo -ne ${Y}"SHA224 ${NC}= " $(echo -n "$get_string" | sha224sum)"\\n\\n"
+
+echo -ne ${Y}"SHA256 ${NC}= " $(echo -n "$get_string" | sha256sum)"\\n\\n"
+
+echo -ne ${Y}"SHA384 ${NC}= " $(echo -n "$get_string" | sha384sum)"\\n\\n"
+
+echo -ne ${Y}"SHA512 ${NC}= " $(echo -n "$get_string" | sha512sum) "\\n\\n\\n"
+
+echo -ne ${G}"Press any key to proceed....."${NC}
+read -n 1 -s
+}
+
+hash_id() {
+clear
+echo -ne "Type your hash: "
+read -r  get_hash
+
+dank=$(echo -n "$get_hash" | wc -c)
+
+if [ "$dank" == '32' ]; then
+echo -ne "\\nHash type ${G}MD5${NC}""\\n\\n"
+
+elif [ "$dank" == '40' ]; then
+echo -ne "\\nHash type ${G}SHA1${NC}""\\n\\n"
+
+elif [ "$dank" == '56' ]; then
+echo -ne "\\nHash type ${G}SHA224${NC}""\\n\\n"
+
+elif [ "$dank" == '64' ]; then
+echo -ne "\\nHash type ${G}SHA256${NC}""\\n\\n"
+
+elif [ "$dank" == '96' ]; then
+echo -ne "\\nHash type ${G}SHA384${NC}""\\n\\n"
+
+elif [ "$dank" == '128' ]; then
+echo -ne "\\nHash type ${G}SHA512${NC}""\\n\\n"
+
+else
+echo -ne "\\nHash type${R} Unknown${NC}""\\n\\n"
+fi
+echo -ne ${G}"Press any key to proceed....."${NC}
+read -n 1 -s
+}
 
 #Say_something_smart
 abo_ut () {
@@ -236,10 +300,13 @@ echo -ne "
                              
      ${R} +-----------------------------------------+${NC}
      ${R} |${NC}  ${Y}1${NC}.  Crack SHA1                         ${R}|${NC}
-     ${R} |${NC}  ${Y}2${NC}.  Crack SHA256                       ${R}|${NC}
-     ${R} |${NC}  ${Y}3${NC}.  Crack SHA384                       ${R}|${NC}
-     ${R} |${NC}  ${Y}4${NC}.  Crack SHA512                       ${R}|${NC}
-     ${R} |${NC}  ${Y}5${NC}.  Crack MD5                          ${R}|${NC}
+     ${R} |${NC}  ${Y}2${NC}.  Crack SHA224                       ${R}|${NC}
+     ${R} |${NC}  ${Y}3${NC}.  Crack SHA256                       ${R}|${NC}
+     ${R} |${NC}  ${Y}4${NC}.  Crack SHA384                       ${R}|${NC}
+     ${R} |${NC}  ${Y}5${NC}.  Crack SHA512                       ${R}|${NC}
+     ${R} |${NC}  ${Y}6${NC}.  Crack MD5                          ${R}|${NC}
+     ${R} |${NC}  ${Y}7${NC}.  Genrate Hash                       ${R}|${NC}
+     ${R} |${NC}  ${Y}8${NC}.  Hash Identifier(Experimental)      ${R}|${NC}
      ${R} |${NC}  ${Y}0${NC}.  About GetSUM                       ${R}|${NC}
      ${R} |${NC}  ${R}q${NC}.  Quit                               ${R}|${NC}
      ${R} +-----------------------------------------+${NC}
@@ -248,10 +315,13 @@ echo -ne "
 read -r -p "[-] (Your choice?):" choice
 case $choice in
 1) sha_1 ;;
-2) sha_256 ;;
-3) sha_384;;
-4) sha_512;;
-5) md_5 ;;
+2) sha_224;;
+3) sha_256 ;;
+4) sha_384;;
+5) sha_512;;
+6) md_5 ;;
+7) gen_hash;;
+8) hash_id;;
 0) abo_ut ;;
 q|Q) sh_exit ;;
 *) echo -ne ${RB}${UW}"\"$choice\"${NC} is not a valid choice"\\n; sleep 2; clear ;;
