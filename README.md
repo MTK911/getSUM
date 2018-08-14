@@ -21,3 +21,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 # DISCLAIMER
 This software/script/application/thing is provided as is, without warranty of any kind. Use of this software/script/application/thing is entirely at #your own risk. Creator of this software/script/application/thing is not responsible for any direct or indirect damage to your own or defiantly someone else's property resulting from the use of this software/script/application/thing.
+
+# Changes
+### Ver 0.1
++ Hash Calculator (MD5, SHA1, SHA224, SHA256, SHA384, SHA512)
++ Hash Identifier (Experimental)
